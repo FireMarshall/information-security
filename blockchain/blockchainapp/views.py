@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 from blockchainapp.models import UserData
 import requests
 import json
@@ -38,14 +38,14 @@ def get_balance(request):
 
 
 def get_blockchain(request):
-    # blockchain = requests.get(url=f'http://{request.session["ip"]}:5000/api/blockchain')
-    # if blockchain.status_code != 200:
-    #     display_msg = "Unsuccessful"
-    #     return render(request, 'block.html', {'display_msg': display_msg})   #add template
-    # else:
-    #     blockchain = blockchain.json()
-    #     print(blockchain)
-    return render(request, 'block.html', {})     #add template
+    blockchain = requests.get(url=f'http://{request.session["ip"]}:5000/api/blockchain')
+    if blockchain.status_code != 200:
+        display_msg = "Unsuccessful"
+        return render(request, 'block.html', {'display_msg': display_msg})   #add template
+    else:
+        blockchain = blockchain.json()
+        print(blockchain)
+    return render(request, 'block.html', blockchain)     #add template
 
 
 def do_transaction(request):
@@ -69,7 +69,8 @@ def display_transaction(request):
     return render(request, 'transactions.html', {})
 
 def mine_transaction(request):
-    mine_status = requests.post(url=f'http://{request.session["ip"]}')
+    mine_status = requests.post(url=f'http://{request.session["ip"]}:5000/mine')
+    return redirect("get_blockchain")
         
 
 

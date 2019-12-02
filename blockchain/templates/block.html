@@ -79,73 +79,73 @@ li{
   </div>
 
   <br>
-  <button class="btn btn-success"> MINE </button>
+  <a href="{% url 'mine_transaction' %}"><button class="btn btn-success"> MINE </button></a>
 
 </div>
 
 <script>
 
 
-// var jcontent = {{blockchain | safe}};
+var jcontent = {{blockchain | safe}};
 
-var jcontent = [
-  {
-      'timestamp': 1,
-      'last_hash': 'genesis_last_hash',
-      'hash': 'genesis_hash',
-      'data': [],
-      'difficulty': 3,
-      'nonce': 'genesis_nonce'
-  },
-  {
-      'timestamp': 2,
-      'last_hash': 'genesis_last_hash',
-      'hash': 'genesis_hash',
-      'data': [],
-      'difficulty': 3,
-      'nonce': 'genesis_nonce'
-  },
-  {
-      'timestamp': 2,
-      'last_hash': 'genesis_last_hash',
-      'hash': 'genesis_hash',
-      'data': [],
-      'difficulty': 3,
-      'nonce': 'genesis_nonce'
-  },
-  {
-      'timestamp': 2,
-      'last_hash': 'genesis_last_hash',
-      'hash': 'genesis_hash',
-      'data': [],
-      'difficulty': 3,
-      'nonce': 'genesis_nonce'
-  },
-  {
-      'timestamp': 2,
-      'last_hash': 'genesis_last_hash',
-      'hash': 'genesis_hash',
-      'data': [],
-      'difficulty': 3,
-      'nonce': 'genesis_nonce'
-  },
-  {
-      'timestamp': 2,
-      'last_hash': 'genesis_last_hash',
-      'hash': 'genesis_hash',
-      'data': [],
-      'difficulty': 3,
-      'nonce': 'genesis_nonce'
-  },
-  {
-      'timestamp': 2,
-      'last_hash': 'genesis_last_hash',
-      'hash': 'genesis_hash',
-      'data': [],
-      'difficulty': 3,
-      'nonce': 'genesis_nonce'
-  }
-];
+// var jcontent = [
+//   {
+//       'timestamp': 1,
+//       'last_hash': 'genesis_last_hash',
+//       'hash': 'genesis_hash',
+//       'data': [],
+//       'difficulty': 3,
+//       'nonce': 'genesis_nonce'
+//   },
+//   {
+//       'timestamp': 2,
+//       'last_hash': 'genesis_last_hash',
+//       'hash': 'genesis_hash',
+//       'data': [],
+//       'difficulty': 3,
+//       'nonce': 'genesis_nonce'
+//   },
+//   {
+//       'timestamp': 2,
+//       'last_hash': 'genesis_last_hash',
+//       'hash': 'genesis_hash',
+//       'data': [],
+//       'difficulty': 3,
+//       'nonce': 'genesis_nonce'
+//   },
+//   {
+//       'timestamp': 2,
+//       'last_hash': 'genesis_last_hash',
+//       'hash': 'genesis_hash',
+//       'data': [],
+//       'difficulty': 3,
+//       'nonce': 'genesis_nonce'
+//   },
+//   {
+//       'timestamp': 2,
+//       'last_hash': 'genesis_last_hash',
+//       'hash': 'genesis_hash',
+//       'data': [],
+//       'difficulty': 3,
+//       'nonce': 'genesis_nonce'
+//   },
+//   {
+//       'timestamp': 2,
+//       'last_hash': 'genesis_last_hash',
+//       'hash': 'genesis_hash',
+//       'data': [],
+//       'difficulty': 3,
+//       'nonce': 'genesis_nonce'
+//   },
+//   {
+//       'timestamp': 2,
+//       'last_hash': 'genesis_last_hash',
+//       'hash': 'genesis_hash',
+//       'data': [],
+//       'difficulty': 3,
+//       'nonce': 'genesis_nonce'
+//   }
+// ];
 
 var output = document.getElementById('scroller');
 
