@@ -2,7 +2,7 @@ import hashlib
 import pickle
 import socket
 import threading
-
+import time
 from ecdsa import SigningKey
 
 from block.block import Block
@@ -26,7 +26,7 @@ class Peer:
         self.server_thread.daemon = True
         self.server_thread.start()
         self.stop_server = False
-        self.peers = list()
+        self.peers = set()
         self.blockchain = Blockchain()
         self.wallet = Wallet(self.blockchain)
         self.transaction_pool = TransactionPool()
@@ -143,6 +143,7 @@ class Peer:
                 sock.close()
     
     def mine_transaction(self):
+        start_time = time.time()
         transaction_data = self.transaction_pool.transaction_data()
         print(transaction_data)
         transaction_data.append(Transaction.reward_transaction(self.wallet).to_json())
@@ -157,6 +158,9 @@ class Peer:
             self._inform_peers("update-transactionpool", self.transaction_pool)
         except Exception as e:
             print(e)
+        finally:
+            stop_time = time.time()
+        return (stop_time - start_time)
     
     
     def wallet_transact(self, transaction_data):
