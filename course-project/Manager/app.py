@@ -8,7 +8,7 @@ from manager.manager import ManagerPeer
 
 app = Flask(__name__)
 
-# manager = ManagerPeer(MANAGER_IP)
+manager = ManagerPeer(MANAGER_IP)
 
 
 @app.route("/api/user_data")

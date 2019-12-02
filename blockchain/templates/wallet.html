@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<body>
+
+
+
+<div class="w3-bar w3-black">
+  <a href="{% url 'get_balance' %}" class="w3-bar-item w3-button" >Wallet</a>
+  <a href="{% url 'display_transaction' %}" class="w3-bar-item w3-button" >Transactions </a>
+  <a href="{% url 'get_blockchain' %}" class="w3-bar-item w3-button" >Blocks </a>
+</div>
+
+<div id="Wallet" class="w3-container tab">
+  <h2>Wallet</h2><br>
+  <label style="padding-left:5%; ">Balance : {{balance}}</label>
+</div>
+
+</body>
+</html>

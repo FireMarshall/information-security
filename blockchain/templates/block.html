@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<head>
+<style>
+div.scrollmenu {
+  background-color: white;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+div.scrollmenu a:hover {
+  background-color: #777;
+}
+
+p {
+  color: white;
+}
+
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 25%;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+  padding: 2px 16px;
+}
+li{
+  color: black;
+}
+</style>
+</head>
+<body>
+
+
+
+    <div class="w3-bar w3-black">
+        <a href="{% url 'get_balance' %}" class="w3-bar-item w3-button" >Wallet</a>
+        <a href="{% url 'display_transaction' %}" class="w3-bar-item w3-button" >Transactions </a>
+        <a href="{% url 'get_blockchain' %}" class="w3-bar-item w3-button" >Blocks </a>
+      </div>
+
+
+
+<div id="Blocks" class="w3-container tab">
+  <h2>Blocks</h2><br>
+
+  <div id="scroller" class="scrollmenu" >
+
+      <!-- <a id="output" href="#home"></a>   -->
+      <!-- <div class="card" id="card">
+          <div class="container" id="container">
+            <ul id="blocks">
+
+            </ul>
+          </div>
+        </div> -->
+       
+  </div>
+
+  <br>
+  <button class="btn btn-success"> MINE </button>
+
+</div>
+
+<script>
+
+
+// var jcontent = {{blockchain | safe}};
+
+var jcontent = [
+  {
+      'timestamp': 1,
+      'last_hash': 'genesis_last_hash',
+      'hash': 'genesis_hash',
+      'data': [],
+      'difficulty': 3,
+      'nonce': 'genesis_nonce'
+  },
+  {
+      'timestamp': 2,
+      'last_hash': 'genesis_last_hash',
+      'hash': 'genesis_hash',
+      'data': [],
+      'difficulty': 3,
+      'nonce': 'genesis_nonce'
+  },
+  {
+      'timestamp': 2,
+      'last_hash': 'genesis_last_hash',
+      'hash': 'genesis_hash',
+      'data': [],
+      'difficulty': 3,
+      'nonce': 'genesis_nonce'
+  },
+  {
+      'timestamp': 2,
+      'last_hash': 'genesis_last_hash',
+      'hash': 'genesis_hash',
+      'data': [],
+      'difficulty': 3,
+      'nonce': 'genesis_nonce'
+  },
+  {
+      'timestamp': 2,
+      'last_hash': 'genesis_last_hash',
+      'hash': 'genesis_hash',
+      'data': [],
+      'difficulty': 3,
+      'nonce': 'genesis_nonce'
+  },
+  {
+      'timestamp': 2,
+      'last_hash': 'genesis_last_hash',
+      'hash': 'genesis_hash',
+      'data': [],
+      'difficulty': 3,
+      'nonce': 'genesis_nonce'
+  },
+  {
+      'timestamp': 2,
+      'last_hash': 'genesis_last_hash',
+      'hash': 'genesis_hash',
+      'data': [],
+      'difficulty': 3,
+      'nonce': 'genesis_nonce'
+  }
+];
+
+var output = document.getElementById('scroller');
+
+for(var i=0; i< jcontent.length;i++){
+  var card_class = document.createElement('div');
+  var container_class = document.createElement('div');
+  var ul_element = document.createElement('ul');
+  var img_element = document.createElement('img');
+  // img_element.setAttribute('src', '/Users/nageshwaralbur/Desktop/IS_PR/blockchain/static/images/chain.png')
+  if(i == 0){
+    container_class.setAttribute('class', 'container');
+    card_class.setAttribute('class', 'card');
+    card_class.setAttribute('style', "float: left;")
+    for (var key in jcontent[i]) {
+    if (jcontent[i].hasOwnProperty(key)) {
+      var val = jcontent[i][key];
+      var json_data = document.createElement('li');
+      var text = document.createTextNode(val)
+      json_data.appendChild(text)
+      ul_element.appendChild(json_data);
+    }
+  }
+  }
+  else{
+    container_class.setAttribute('class', 'container');
+    card_class.setAttribute('class', 'card');
+    card_class.setAttribute('style', "float: left;")
+  for (var key in jcontent[i]) {
+    if (jcontent[i].hasOwnProperty(key)) {
+      var val = jcontent[i][key];
+      var json_data = document.createElement('li');
+      var text = document.createTextNode(val)
+      json_data.appendChild(text)
+      ul_element.appendChild(json_data);
+    }
+  }
+}
+container_class.appendChild(ul_element);
+  card_class.appendChild(container_class);
+  output.appendChild(card_class);
+  // output.appendChild(img_element);
+
+
+}
+</script>
+</body>
+</html>
