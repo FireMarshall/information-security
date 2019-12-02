@@ -2,7 +2,13 @@ from block import Block
 from commons import MINING_REWARD_INPUT
 from transaction import Transaction
 from wallet import Wallet
-
+import hashlib
+import pickle
+import socket
+import threading
+import time
+from ecdsa import SigningKey
+import json
 '''BLOCKCHAIN.PY'''
 
 

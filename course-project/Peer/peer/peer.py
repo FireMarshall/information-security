@@ -4,13 +4,14 @@ import socket
 import threading
 import time
 from ecdsa import SigningKey
-
+import json
 from block.block import Block
 from blockchain.blockchain import Blockchain
 from commons import MANAGER_IP, MANAGER_PORT, SERVER_PORT
 from transaction.transaction import Transaction
 from transaction_pool.transaction_pool import TransactionPool
 from wallet.wallet import Wallet
+
 
 # client side
 
@@ -47,10 +48,12 @@ class Peer:
                 self.peers.remove(data.split()[1])
             
             elif data.startswith('sync-chain'):
+                client_peer.send(b'ok')
                 blockchain_recieved = pickle.loads(client_peer.recv(4096))
                 self.blockchain.replace_chain(blockchain_recieved)
             
             elif data.startswith('add-block'):
+                client_peer.send(b'ok')
                 block = pickle.loads(client_peer.recv(4096))
                 potential_chain = self.blockchain.chain[:]
                 potential_chain.append(block)
@@ -70,6 +73,7 @@ class Peer:
 
             
             elif data.startswith('add-transaction'):
+                client_peer.send(b'ok')
                 print("Adding trasaction")
                 new_transaction = client_peer.recv(4096)
                 print("Recieved")
@@ -77,7 +81,7 @@ class Peer:
                 print("Done")
             
             elif data.startswith('update-transactionpool'):
-                
+                client_peer.send(b'ok')                
                 new_transactionpool = client_peer.recv(4096)
                 self.transaction_pool = pickle.loads(new_transactionpool)
             
@@ -128,6 +132,7 @@ class Peer:
             sock.connect((peer, self.server_port))
             sock.send(message.encode("utf-8"))
             if data is not None:
+                confirm = sock.recv(4096)
                 sock.send(pickle.dumps(data))
             sock.close()
     
@@ -168,15 +173,15 @@ class Peer:
         if transaction:
             transaction.update(
                 self.wallet,
-                transaction_data['recipient'],
-                transaction_data['amount']
+                transaction_data['recipient_address'],
+                int(transaction_data['amount'])
             )
         else:
             print("Creating")
             transaction = Transaction(
                 self.wallet,
-                transaction_data['recipient'],
-                transaction_data['amount']
+                transaction_data['recipient_address'],
+                int(transaction_data['amount'])
             )
             print("Done")
         
