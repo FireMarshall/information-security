@@ -152,6 +152,7 @@ var output = document.getElementById('scroller');
 for(var i=0; i< jcontent.length;i++){
   var card_class = document.createElement('div');
   var container_class = document.createElement('div');
+  // container_class.setAttribute('style', 'overflow:hidden;')
   var ul_element = document.createElement('ul');
   var img_element = document.createElement('img');
   // img_element.setAttribute('src', '/Users/nageshwaralbur/Desktop/IS_PR/blockchain/static/images/chain.png')
@@ -160,11 +161,18 @@ for(var i=0; i< jcontent.length;i++){
     card_class.setAttribute('class', 'card');
     card_class.setAttribute('style', "float: left;")
     for (var key in jcontent[i]) {
+      if (key == 'data'){
+        continue;
+      }
     if (jcontent[i].hasOwnProperty(key)) {
       var val = jcontent[i][key];
       var json_data = document.createElement('li');
-      var text = document.createTextNode(val)
-      json_data.appendChild(text)
+      var keyy = document.createTextNode(key);
+      var colon = document.createTextNode(': ');
+      var text = document.createTextNode(val);
+      json_data.appendChild(keyy);
+      json_data.appendChild(colon);
+      json_data.appendChild(text);
       ul_element.appendChild(json_data);
     }
   }
@@ -174,11 +182,47 @@ for(var i=0; i< jcontent.length;i++){
     card_class.setAttribute('class', 'card');
     card_class.setAttribute('style', "float: left;")
   for (var key in jcontent[i]) {
-    if (jcontent[i].hasOwnProperty(key)) {
-      var val = jcontent[i][key];
+    if(key == 'data'){
+      // for(var data_key in jcontent[i][key][i]){
+      //   if(data_key == 'output'){
+      //     for(var output_key in jcontent[i][key][data_key]){
+      //       var json_data = document.createElement('li');
+      //       var recp = document.createTextNode('from')
+      //       var addr = document.createTextNode(output_key)
+      //       json_data.appendChild(recp);
+      //       json_data.appendChild(addr);
+      //       ul_element.appendChild(json_data);
+      //     }
+      //   }
+      //   else if(data_key == 'amount'){
+      //     var json_data = document.createElement('li');
+      //       var recp = document.createTextNode(data_key)
+      //       var addr = document.createTextNode(jcontent[i][key][data_key])
+      //       json_data.appendChild(recp);
+      //       json_data.appendChild(addr);
+      //       ul_element.appendChild(json_data);
+      //   }
+      //   else{
+      //     continue;
+      //   }
+      // }
+      continue;
+    }
+    else {
+      var val = String(jcontent[i][key]);
       var json_data = document.createElement('li');
-      var text = document.createTextNode(val)
-      json_data.appendChild(text)
+      var keyy = document.createTextNode(key);
+      var colon = document.createTextNode(': ');
+      if(key == 'last_hash' || key == 'hash'){
+        var sub_text = val.substring(0,12);
+        var text = document.createTextNode(sub_text);
+      }
+      else{
+        var text = document.createTextNode(val);
+      }
+      json_data.appendChild(keyy);
+      json_data.appendChild(colon);
+      json_data.appendChild(text);
       ul_element.appendChild(json_data);
     }
   }
